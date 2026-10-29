@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#07060f" />
+  <title>Grok Snake</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="hud">
+      <div class="hud-box">
+        <span class="hud-label">SCORE</span>
+        <span id="score" class="hud-value">0</span>
+      </div>
+      <h1 class="hud-title"><span class="t-grok">GROK</span> <span class="t-snake">SNAKE</span></h1>
+      <div class="hud-box hud-right">
+        <span class="hud-label">HI</span>
+        <span id="hiscore" class="hud-value hi">0</span>
+      </div>
+    </header>
+
+    <main id="stage">
+      <div id="boardWrap">
+        <canvas id="board" aria-label="Snake game board"></canvas>
+
+        <section id="titleScreen" class="overlay show">
+          <div class="logo">
+            <span class="logo-line l1">GROK</span>
+            <span class="logo-line l2">SNAKE</span>
+          </div>
+          <p class="blink start-hint"><span class="desk">PRESS SPACE TO START</span><span class="touch">TAP TO START</span></p>
+          <div class="howto">
+            <p><span class="desk">ARROWS / WASD TO STEER</span><span class="touch">SWIPE OR USE THE ARROWS</span></p>
+            <p><span class="desk">P OR ESC TO PAUSE</span><span class="touch">II TO PAUSE</span></p>
+          </div>
+          <p class="title-hi">HI-SCORE <span id="titleHi">0</span></p>
+        </section>
+
+        <section id="pauseScreen" class="overlay">
+          <h2 class="big">PAUSED</h2>
+          <p class="blink"><span class="desk">PRESS P TO RESUME</span><span class="touch">TAP TO RESUME</span></p>
+        </section>
+
+        <section id="overScreen" class="overlay">
+          <h2 class="big over">GAME<br />OVER</h2>
+          <p class="final">SCORE <span id="finalScore">0</span></p>
+          <p id="newHi" class="new-hi">NEW HIGH SCORE!</p>
+          <button id="restartBtn" class="btn">RESTART</button>
+          <p class="small-hint desk">OR PRESS SPACE</p>
+        </section>
+      </div>
+    </main>
+
+    <nav id="dpad" aria-label="Direction buttons">
+        <button id="pauseBtn" class="pause-btn" aria-label="Pause" title="Pause (P)">II</button>
+      <button class="dir up" data-dir="up" aria-label="Up">&#9650;</button>
+      <button class="dir left" data-dir="left" aria-label="Left">&#9664;</button>
+      <button class="dir right" data-dir="right" aria-label="Right">&#9654;</button>
+      <button class="dir down" data-dir="down" aria-label="Down">&#9660;</button>
+    </nav>
+  </div>
+  <div class="crt" aria-hidden="true"></div>
+  <script src="game.js"></script>
+</body>
+</html>
