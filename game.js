@@ -31,6 +31,7 @@
   var snake, dir, dirQueue, food, foodColor, score, hiScore, tickMs, acc, lastTime, particles, flash;
   var cell = 16;
   var dpr = 1;
+  var overAt = 0; // when the last game ended, to ignore the tap that caused the crash
 
   hiScore = loadHi();
   var isTouch = ("ontouchstart" in window) || navigator.maxTouchPoints > 0 || matchMedia("(pointer: coarse)").matches;
@@ -115,6 +116,7 @@
   function togglePause() { state === "playing" ? pause() : resume(); }
 
   function gameOver() {
+    overAt = performance.now();
     flash = 1;
     var isNew = score > hiScore;
     if (isNew) { hiScore = score; saveHi(); }
@@ -148,7 +150,6 @@
 
   // ---------- Rendering ----------
   function resize() {
-    var hudH = 0;
     var availW = stage.clientWidth - 24;
     var availH = stage.clientHeight - 24;
     var size = Math.max(160, Math.min(availW, availH, 720));
@@ -331,9 +332,6 @@
     // ignore the tap that may arrive right after crashing
     if (performance.now() - overAt > 400) start();
   });
-  var overAt = 0;
-  var _gameOver = gameOver;
-  gameOver = function () { overAt = performance.now(); _gameOver(); };
 
   // Auto-pause when the tab is hidden
   document.addEventListener("visibilitychange", function () { if (document.hidden) pause(); });
